@@ -25,6 +25,13 @@ except ImportError:
     print('umqtt.simple not available; please install via: import upip; upip.install("micropython-umqtt.simple")')
     MQTTClient = None
 
+try:
+    import mdns
+    print('mdns module loaded successfully')
+except ImportError:
+    print('mdns module not available; mDNS service advertisement disabled')
+    mdns = None
+
 # Pin configuration
 LED_PINS = {
     'Red': Pin(5, Pin.OUT),
@@ -183,6 +190,34 @@ async def connect_ethernet():
     except Exception as e:
         print(f'Ethernet setup error: {e}')
         raise
+
+
+def setup_mdns(hostname):
+    """Set up mDNS service advertisement for discovery via dns-sd -B."""
+    if mdns is None:
+        print('mDNS module not available, skipping service advertisement')
+        return None
+    try:
+        mdns_server = mdns.Server(hostname)
+        # Advertise HTTP service for discovery
+        mdns_server.advertise('_http', '_tcp', port=80, txt={'path': '/', 'device': 'led-pole'})
+        print(f'mDNS advertising: {hostname}.local, _http._tcp on port 80')
+        return mdns_server
+    except AttributeError:
+        # Try alternative mdns API (older versions)
+        try:
+            mdns_server = mdns.MDNS()
+            mdns_server.set_hostname(hostname)
+            mdns_server.set_service('_http', '_tcp', 80)
+            mdns_server.start()
+            print(f'mDNS started (legacy API): {hostname}.local')
+            return mdns_server
+        except Exception as e:
+            print(f'mDNS setup error (legacy): {e}')
+            return None
+    except Exception as e:
+        print(f'mDNS setup error: {e}')
+        return None
 
 
 def mqtt_callback(topic, msg):
@@ -406,6 +441,11 @@ def process_event(data):
             else:
                 print(f'Update ignored: problemId {problem_id} not in active problems')
                 # Still return True - this is not an error, just informational
+        elif status == 'acknowledged':
+            # Acknowledge silences the buzzer but keeps the problem active
+            buzzer_silenced = True
+            LED_PINS['Buzzer'].off()
+            print(f'Problem {problem_id} acknowledged: buzzer silenced')
         elif status == 'resolved':
             active_problems.pop(problem_id, None)
             buzzer_silenced = False
@@ -624,6 +664,9 @@ async def main():
     try:
         load_config()
         lan = await connect_ethernet()
+        # Set up mDNS for service discovery (dns-sd -B _http._tcp)
+        hostname = mqtt_config.get('hostname') or mqtt_config.get('client_id') or 'led-pole'
+        setup_mdns(hostname)
         await init_mqtt()
         asyncio.create_task(http_server(lan))
         asyncio.create_task(switch_handler())
