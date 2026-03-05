@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 249.1875 257.625" preserveAspectRatio="xMinYMin meet" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="249.1875" height="257.625" fill="#FFFFFF" fill-opacity="1" stroke="none" />
+<g id="BD1HC500FVM">
+<rect x="140.625" y="81" width="54" height="72" fill="#FFFFFF" fill-opacity="0.831372549019608" stroke="none" />
+<line x1="131.625" y1="90" x2="140.625" y2="90" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="142.875" y="92.7" font-family="sans-serif" font-size="9" fill="#000000">IN</text>
+<text x="134.4375" y="87.75" font-family="sans-serif" font-size="5.625" fill="#000000">1</text>
+<line x1="131.625" y1="108" x2="140.625" y2="108" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="142.875" y="110.7" font-family="sans-serif" font-size="9" fill="#000000">GND</text>
+<text x="134.4375" y="105.75" font-family="sans-serif" font-size="5.625" fill="#000000">2</text>
+<line x1="131.625" y1="126" x2="140.625" y2="126" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="142.875" y="128.7" font-family="sans-serif" font-size="9" fill="#000000">OUT</text>
+<text x="134.4375" y="123.75" font-family="sans-serif" font-size="5.625" fill="#000000">3</text>
+<line x1="131.625" y1="144" x2="140.625" y2="144" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="142.875" y="146.7" font-family="sans-serif" font-size="9" fill="#000000">OUT</text>
+<text x="134.4375" y="141.75" font-family="sans-serif" font-size="5.625" fill="#000000">4</text>
+<line x1="203.625" y1="144" x2="194.625" y2="144" stroke="#07F707" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="176.0625" y="146.7" font-family="sans-serif" font-size="9" fill="#000000">Vdd</text>
+<text x="197.4375" y="141.75" font-family="sans-serif" font-size="5.625" fill="#000000">5</text>
+<line x1="203.625" y1="126" x2="194.625" y2="126" stroke="#07F707" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="176.0625" y="128.7" font-family="sans-serif" font-size="9" fill="#000000">Vdd</text>
+<text x="197.4375" y="123.75" font-family="sans-serif" font-size="5.625" fill="#000000">6</text>
+<line x1="203.625" y1="108" x2="194.625" y2="108" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="178.875" y="110.7" font-family="sans-serif" font-size="9" fill="#000000">NC</text>
+<text x="197.4375" y="105.75" font-family="sans-serif" font-size="5.625" fill="#000000">7</text>
+<line x1="203.625" y1="90" x2="194.625" y2="90" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="181.125" y="92.7" font-family="sans-serif" font-size="9" fill="#000000">ST</text>
+<text x="197.4375" y="87.75" font-family="sans-serif" font-size="5.625" fill="#000000">8</text>
+<rect x="140.625" y="81" width="54" height="72" stroke="#000000" stroke-opacity="1" stroke-width="1.6875" fill="none" />
+<text x="135.5625" y="171.45" font-family="sans-serif" font-size="9" fill="#000000">BD1HC500FVM</text>
+<ellipse cx="203.625" cy="108" rx="2.25" ry="2.25" stroke="#877777" stroke-opacity="1" stroke-width="0.5625" fill="none" />
+<ellipse cx="203.625" cy="90" rx="2.25" ry="2.25" stroke="#877777" stroke-opacity="1" stroke-width="0.5625" fill="none" />
+</g>
+<g id="Internal Port">
+<polygon fill="#FFFFFF" fill-opacity="0.831372549019608" stroke="none" points="95.625,90 91.125,95.625 59.625,95.625 59.625,84.375 91.125,84.375 " />
+<polygon stroke="#000000" stroke-opacity="1" stroke-width="0.5625" stroke-linejoin="round" fill="none" points="95.625,90 91.125,95.625 59.625,95.625 59.625,84.375 91.125,84.375 " />
+<text x="68.0625" y="92.3625" font-family="sans-serif" font-size="7.875" fill="#000000">GPIO</text>
+</g>
+<g id="DC Rail">
+<line x1="216" y1="27.5625" x2="227.25" y2="27.5625" stroke="#07F707" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="221.625" y1="54" x2="221.625" y2="27.5625" stroke="#07F707" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="210.9375" y="25.2" font-family="sans-serif" font-size="9" fill="#000000">+12V</text>
+</g>
+<g id="Wire">
+<line x1="218.8125" y1="126" x2="206.4375" y2="126" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="221.625" y1="126" x2="203.625" y2="126" stroke="#07F707" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="221.625" cy="126" rx="2.25" ry="2.25" fill="#07F707" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="206.4375" y1="144" x2="218.8125" y2="144" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="203.625" y1="144" x2="221.625" y2="144" stroke="#07F707" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+<g id="Wire">
+<line x1="221.625" y1="141.1875" x2="221.625" y2="128.8125" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="221.625" y1="144" x2="221.625" y2="126" stroke="#07F707" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="221.625" cy="126" rx="2.25" ry="2.25" fill="#07F707" fill-opacity="1" stroke="none" />
+</g>
+<g id="Lamp">
+<line x1="59.625" y1="162" x2="73.125" y2="162" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="82.125" y1="162" x2="95.625" y2="162" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<ellipse cx="77.625" cy="148.5" rx="11.25" ry="11.25" fill="#FFFF00" fill-opacity="0" stroke="none" />
+<ellipse cx="77.625" cy="148.5" rx="11.25" ry="11.25" stroke="#000000" stroke-opacity="1" stroke-width="1.6875" fill="none" />
+<line x1="73.125" y1="162" x2="73.125" y2="148.5" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="82.125" y1="162" x2="82.125" y2="148.5" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="73.125" y1="148.5" x2="82.125" y2="148.5" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<text x="69.1875" y="124.2" font-family="sans-serif" font-size="9" fill="#000000">LED</text>
+</g>
+<g id="Wire">
+<line x1="221.625" y1="64.6875" x2="221.625" y2="115.3125" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="221.625" y1="54" x2="221.625" y2="126" stroke="#07F707" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="221.625" cy="126" rx="2.25" ry="2.25" fill="#07F707" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="101.25" y1="90" x2="126" y2="90" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="95.625" y1="90" x2="131.625" y2="90" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+<g id="Wire">
+<line x1="116.4375" y1="144" x2="128.8125" y2="144" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="113.625" y1="144" x2="131.625" y2="144" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="113.625" cy="144" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="113.625" y1="141.1875" x2="113.625" y2="128.8125" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="113.625" y1="144" x2="113.625" y2="126" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="113.625" cy="144" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="116.4375" y1="126" x2="128.8125" y2="126" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="113.625" y1="126" x2="131.625" y2="126" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+<g id="Ground">
+<line x1="41.625" y1="198" x2="41.625" y2="234" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="47.25" y1="234" x2="36" y2="234" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="45" y1="236.8125" x2="38.25" y2="236.8125" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="42.75" y1="239.625" x2="40.5" y2="239.625" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<ellipse cx="41.625" cy="198" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Resistor">
+<line x1="59.625" y1="198" x2="68.625" y2="198" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<line x1="86.625" y1="198" x2="95.625" y2="198" stroke="#877777" stroke-opacity="1" stroke-width="1.6875" stroke-linecap="round" fill="none" />
+<polyline stroke="#877777" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6875" fill="none" points="68.625,198 70.125,193.5 71.625,198 73.125,202.5 74.625,198 " />
+<polyline stroke="#877777" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6875" fill="none" points="74.625,198 76.125,193.5 77.625,198 79.125,202.5 80.625,198 " />
+<polyline stroke="#877777" stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6875" fill="none" points="80.625,198 82.125,193.5 83.625,198 85.125,202.5 86.625,198 " />
+<text x="72.5625" y="191.1375" font-family="sans-serif" font-size="9" fill="#000000">1k</text>
+</g>
+<g id="Wire">
+<line x1="98.4375" y1="162" x2="110.8125" y2="162" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="95.625" y1="162" x2="113.625" y2="162" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="113.625" cy="162" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="113.625" y1="159.1875" x2="113.625" y2="146.8125" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="113.625" y1="162" x2="113.625" y2="144" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="113.625" cy="162" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+<ellipse cx="113.625" cy="144" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="98.4375" y1="198" x2="110.8125" y2="198" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="95.625" y1="198" x2="113.625" y2="198" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+<g id="Wire">
+<line x1="113.625" y1="192.375" x2="113.625" y2="167.625" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="113.625" y1="198" x2="113.625" y2="162" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="113.625" cy="162" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="44.4375" y1="198" x2="56.8125" y2="198" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="41.625" y1="198" x2="59.625" y2="198" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="41.625" cy="198" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="41.625" y1="192.375" x2="41.625" y2="167.625" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="41.625" y1="198" x2="41.625" y2="162" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="41.625" cy="198" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="44.4375" y1="162" x2="56.8125" y2="162" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="41.625" y1="162" x2="59.625" y2="162" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+<g id="Wire">
+<line x1="38.8125" y1="198" x2="26.4375" y2="198" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="41.625" y1="198" x2="23.625" y2="198" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+<ellipse cx="41.625" cy="198" rx="2.25" ry="2.25" fill="#877777" fill-opacity="1" stroke="none" />
+</g>
+<g id="Wire">
+<line x1="23.625" y1="184.5" x2="23.625" y2="121.5" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="23.625" y1="198" x2="23.625" y2="108" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+<g id="Wire">
+<line x1="39.9375" y1="108" x2="115.3125" y2="108" stroke="#FFFFFF" stroke-opacity="1" stroke-width="3.375" stroke-linecap="round" fill="none" />
+<line x1="23.625" y1="108" x2="131.625" y2="108" stroke="#877777" stroke-opacity="1" stroke-width="0.84375" stroke-linecap="round" fill="none" />
+</g>
+</svg>
