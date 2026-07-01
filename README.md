@@ -172,31 +172,59 @@ Subscribe to a topic and send JSON messages in the same format as the `/event` e
 }
 ```
 
-## Zabbix Integration
+## Zabbix Integration (on the Zabbix Server)
+
+### Install mosquitto
+
+1. I used mosquitto version 1.6.15 from https://mosquitto.org/
+2. `mosquitto_passwd -c /etc/mosquitto/passwd zabbix`
+3. systemctl start mosquitto.service
+4. systemctl enable mosquitto.service
+
+
+
+### Media Script
+
+1. Copy mqtt-publish.sh to /usr/lib/zabbix/alertscripts
+2. cd /usr/lib/zabbix/alertscripts/
+2. chown zabbix:zabbix mqtt-publish.sh
+3. chmod +x mqtt-publish.sh
+4. cd /var/log/
+5. touch mqtt_log
+6. chown zabbix:zabbix mqtt_log
+
 
 ### Media Type Configuration
 
 Create a custom media type in Zabbix to send alerts:
 
 1. Go to **Administration > Media types > Create media type**
-2. Configure as Webhook or Script
-3. Use the following JSON payload:
+2. Configure Type : Script
+3. Script Name : mqtt-publish.sh
+4. Script parameters : zabbixEvents, {ALERT.MESSAGE}
+5. Add 3 Message templates : 
 
-```json
-{
-    "problemId": "{EVENT.ID}",
-    "problemStatus": "{EVENT.UPDATE.STATUS}",
-    "problemSeverity": "{EVENT.SEVERITY}"
-}
-```
+Message type | Subject | Message
+------------ | ------- | -------
+Problem      | Problem | {"problemId":"{EVENT.ID}","problemStatus":"started","problemSeverity":"{EVENT.SEVERITY}"}
+Problem Recovery | Problem Recovery | {"problemId":"{EVENT.ID}","problemStatus":"resolved","problemSeverity":"{EVENT.SEVERITY}"}
+Problem update | Problem update | {"problemId":"{EVENT.ID}","problemStatus":"updated","problemAcknowledged":"{EVENT.ACK.STATUS}","problemSeverity":"{EVENT.SEVERITY}"}
 
-### Action Configuration
+
+
+### Zabbix Action Configuration
 
 Create an action that sends alerts when problems occur:
 
 1. Go to **Configuration > Actions > Create action**
-2. Set conditions (e.g., trigger severity >= Warning)
-3. Configure operations to send via your LED Pole media type
+2. Create a New Action
+3. Name : MQTT
+4. go to Operations and set Operations
+5. Create ![zabbix_action.png](zabbix_action.png)
+
+
+
+
 
 ### Example curl Commands
 

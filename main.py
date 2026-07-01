@@ -13,10 +13,11 @@ import network
 import socket
 import ujson
 import machine
-from machine import Pin
+from machine import Pin, WDT
 import time
 import sys
 import ubinascii
+import gc
 
 try:
     from umqtt.simple import MQTTClient
@@ -57,6 +58,14 @@ try:
 except Exception as e:
     print('Switch initialization error:', e)
 
+# Enable hardware watchdog (30 second timeout)
+try:
+    wdt = WDT(timeout=30000)
+    print('Watchdog timer enabled (30s timeout)')
+except Exception as e:
+    print('Watchdog not available:', e)
+    wdt = None
+
 # Severity to LED mapping
 SEVERITY_TO_LED = {
     'Not classified': 'White',
@@ -87,6 +96,7 @@ mqtt_config = {
     'hostname': None
 }
 mqtt_client = None
+mqtt_last_error = None
 
 
 def load_config():
@@ -122,6 +132,45 @@ HELP_PAGE = (
     "<head><title>LED Alert Pole</title></head>"
     "<body>"
     "<h1>LED Alert Pole</h1>"
+    "<div id=\"led-visual\" style=\"margin:20px 0; padding:15px; background:#222; border-radius:8px; max-width:220px; box-shadow:0 4px 12px rgba(0,0,0,0.4);\">"
+    "  <div style=\"text-align:center; color:#aaa; font-size:12px; margin-bottom:8px;\">LIVE STATUS</div>"
+    "  <div style=\"display:flex; flex-direction:column; align-items:center; gap:8px;\">"
+    "    <div class=\"led\" id=\"led-Red\" style=\"background:#444; width:48px; height:48px; border-radius:50%; border:3px solid #c00; box-shadow:0 0 6px #c00; transition:all .2s;\"></div>"
+    "    <div class=\"led\" id=\"led-Yellow\" style=\"background:#444; width:48px; height:48px; border-radius:50%; border:3px solid #cc0; box-shadow:0 0 6px #cc0; transition:all .2s;\"></div>"
+    "    <div class=\"led\" id=\"led-Blue\" style=\"background:#444; width:48px; height:48px; border-radius:50%; border:3px solid #08f; box-shadow:0 0 6px #08f; transition:all .2s;\"></div>"
+    "    <div class=\"led\" id=\"led-White\" style=\"background:#444; width:48px; height:48px; border-radius:50%; border:3px solid #ccc; box-shadow:0 0 6px #ccc; transition:all .2s;\"></div>"
+    "    <div class=\"led\" id=\"led-Green\" style=\"background:#444; width:48px; height:48px; border-radius:50%; border:3px solid #0c0; box-shadow:0 0 6px #0c0; transition:all .2s;\"></div>"
+    "    <div style=\"margin-top:6px; width:48px; height:28px; background:#333; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:10px; color:#888; border:2px solid #555;\">BUZZER</div>"
+    "    <div id=\"led-Buzzer\" style=\"background:#444; width:36px; height:18px; border-radius:4px; border:2px solid #f80; box-shadow:0 0 4px #f80; transition:all .2s; margin-top:-4px;\"></div>"
+    "  </div>"
+    "  <div style=\"text-align:center; margin-top:10px; font-size:11px; color:#666;\">Red & Yellow = High/Disaster • Blue = Info • White = Unclassified • Green = OK</div>"
+    "</div>"
+    "<script>"
+    "function updateLEDs(states) {"
+    "  const colors = ['Red','Yellow','Blue','White','Green','Buzzer'];"
+    "  colors.forEach(c => {"
+    "    const el = document.getElementById('led-' + c);"
+    "    if (!el) return;"
+    "    const on = states && states[c];"
+    "    if (on) {"
+    "      el.style.background = (c === 'Red') ? '#c00' : (c === 'Yellow') ? '#cc0' : (c === 'Blue') ? '#08f' : (c === 'White') ? '#fff' : (c === 'Green') ? '#0c0' : '#f80';"
+    "      el.style.boxShadow = (c === 'Red') ? '0 0 16px #c00, 0 0 28px #c00' : (c === 'Yellow') ? '0 0 16px #cc0, 0 0 28px #cc0' : (c === 'Blue') ? '0 0 16px #08f, 0 0 28px #08f' : (c === 'White') ? '0 0 16px #fff, 0 0 28px #fff' : (c === 'Green') ? '0 0 16px #0c0, 0 0 28px #0c0' : '0 0 12px #f80, 0 0 20px #f80';"
+    "    } else {"
+    "      el.style.background = '#444';"
+    "      el.style.boxShadow = (c === 'Red') ? '0 0 6px #c00' : (c === 'Yellow') ? '0 0 6px #cc0' : (c === 'Blue') ? '0 0 6px #08f' : (c === 'White') ? '0 0 6px #ccc' : (c === 'Green') ? '0 0 6px #0c0' : '0 0 4px #f80';"
+    "    }"
+    "  });"
+    "}"
+    "async function refreshStatus() {"
+    "  try {"
+    "    const res = await fetch('/status');"
+    "    const data = await res.json();"
+    "    if (data && data.led_states) updateLEDs(data.led_states);"
+    "  } catch(e) { console.log('status fetch error', e); }"
+    "}"
+    "setInterval(refreshStatus, 1500);"
+    "refreshStatus();"
+    "</script>"
     "<p>Manages alerts via HTTP and MQTT, controlling LEDs and buzzer based on problem severity.</p>"
     "<p>Press the button once to silence the buzzer, or twice quickly to reset all alerts.</p>"
     "<ul>"
@@ -264,6 +313,8 @@ async def init_mqtt():
     except Exception as e:
         print(f'MQTT initialization error: {e}')
         mqtt_client = None
+        global mqtt_last_error
+        mqtt_last_error = str(e)
 
 
 async def mqtt_check():
@@ -279,7 +330,10 @@ async def mqtt_check():
         except Exception as e:
             print(f'MQTT check error: {e}')
             mqtt_client = None
+            global mqtt_last_error
+            mqtt_last_error = str(e)
             await init_mqtt()
+        if wdt: wdt.feed()
         await asyncio.sleep_ms(500)
 
 
@@ -371,12 +425,17 @@ def get_status(lan):
         'buzzer_silenced': buzzer_silenced,
         'buzzer_active': buzzer_active,
         'led_states': led_states,
+        'mqtt_connected': bool(mqtt_client),
+        'mqtt_last_error': mqtt_last_error,
+        'memory': {
+            'free': gc.mem_free(),
+            'allocated': gc.mem_alloc()
+        },
         'mqtt_config': {
             'server': mqtt_config['server'],
             'topic': mqtt_config['topic'],
             'hostname': mqtt_config['hostname'],
             'client_id': mqtt_config['client_id']
-            # Note: username/password excluded for security
         }
     }
     print('Status requested:', status)
@@ -674,6 +733,9 @@ async def main():
         asyncio.create_task(buzzer_cycle())
         print('All tasks started, entering main loop')
         while True:
+            if wdt:
+                wdt.feed()
+            gc.collect()
             await asyncio.sleep(1)
     except Exception as e:
         print(f'Main loop error: {e}')
